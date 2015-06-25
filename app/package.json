@@ -1,21 +1,23 @@
 {
-  "name": "perunApp",
-  "productName": "Perun App",
-  "description": "Prototype for the PS4 file sharing app",
-  "version": "0.0.1",
-  "author": "Vladimir Kavoun <vkavoun@gmail.com>",
-  "main": "app.html",
-  "window": {
-    "icon": "icon.png",
-    "show": true,
-    "toolbar": true,
-    "width": 1000,
-    "height": 600,
-    "min_width": 800,
-    "min_height": 400,
-    "position": "center"
-  },
-  "dependencies": {
-    "fs-jetpack": "^0.6.4"
-  }
+    "name": "perunApp",
+    "productName": "Perun App",
+    "description": "Prototype for the PS4 file sharing app",
+    "version": "0.0.1",
+    "author": "Vladimir Kavoun <vkavoun@gmail.com>",
+    "main": "app.html",
+    "window": {
+        "icon": "icon.png",
+        "show": true,
+        "toolbar": true,
+        "width": 1000,
+        "height": 600,
+        "min_width": 800,
+        "min_height": 400,
+        "position": "center"
+    },
+    "dependencies": {
+        "fs-jetpack": ">=0.6.4",
+        "requirejs" : ">=2.1.18",
+        "jquery": "2.1.4"
+    }
 }
