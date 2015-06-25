@@ -1,6 +1,3 @@
-/**
- * Created by Xif on 15-06-25.
- */
 define(function (require) {
     var VIEW = "view";
     var FILE = VIEW+".file.request";

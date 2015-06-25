@@ -1,12 +1,10 @@
-var os = require("os");
 var requirejs = require("requirejs");
 var $ = require("jquery");
-
-require("jquery-ui");
 
 function startApp() {
     requirejs.config({
         baseUrl: "./lib",
+        nodeRequire: require,
         paths: {
             "events": "/events",
             "api": "/api",
@@ -19,7 +17,7 @@ function startApp() {
     });
 
     var currentView = $("main-container").data("view");
-    
+
     requirejs(["views/"+currentView,"events/dispatchManager"], function (View, dispatchManager) {
         dispatchManager.init();
 
