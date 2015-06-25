@@ -37,7 +37,7 @@ gulp.task("clean", function(callback) {
 
 
 var copyTask = function () {
-    projectDir.copy("resources/icon.png", destDir.path("icon.png"), { overwrite: true });
+    projectDir.copy("resources/images/icon.png", destDir.path("icon.png"), { overwrite: true });
 
     return projectDir.copyAsync("app", destDir.path(), {
         overwrite: true,

@@ -2,7 +2,7 @@
   "name": "perunApp",
   "productName": "Perun App",
   "description": "Prototype for the PS4 file sharing app",
-  "version": "0.1",
+  "version": "0.0.1",
   "author": "Vladimir Kavoun <vkavoun@gmail.com>",
   "main": "app.html",
   "window": {
