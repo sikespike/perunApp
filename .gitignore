@@ -1,3 +1,7 @@
 #release folder
 releases
 build
+
+#project file
+*.iml
+.idea/
