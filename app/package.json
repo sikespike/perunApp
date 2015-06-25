@@ -1,9 +1,9 @@
 {
-  "name": "nw-boilerplate",
-  "productName": "NW Boilerplate",
-  "description": "Starter for NW.js application. Out of the box ready for serious stuff.",
-  "version": "0.1.0",
-  "author": "Mr Gumby <gumby@sillywalks.com>",
+  "name": "perunApp",
+  "productName": "Perun App",
+  "description": "Prototype for the PS4 file sharing app",
+  "version": "0.1",
+  "author": "Vladimir Kavoun <vkavoun@gmail.com>",
   "main": "app.html",
   "window": {
     "icon": "icon.png",
