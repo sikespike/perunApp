@@ -1,17 +1,31 @@
-var os = require('os');
-var requirejs = require('requirejs');
+var os = require("os");
+var requirejs = require("requirejs");
+var $ = require("jquery");
+
+require("jquery-ui");
 
 function startApp() {
     requirejs.config({
         baseUrl: "./lib",
         paths: {
-            "model": "model/",
-            "net": "net/",
-            "ui": "ui/"
+            "events": "/events",
+            "api": "/api",
+            "model": "/model",
+            "net": "/net",
+            "vm": "/ui/vm",
+            "views": "/ui/views",
+            "templates": "/ui/views/templates"
         }
     });
 
-    requirejs(['app'], function (app) {
+    var currentView = $("main-container").data("view");
+    
+    requirejs(["views/"+currentView,"events/dispatchManager"], function (View, dispatchManager) {
+        dispatchManager.init();
+
+        var view = new View({
+            viewName: currentView
+        });
 
     });
 }
