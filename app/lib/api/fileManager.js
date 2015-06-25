@@ -1,11 +1,12 @@
-var $ = require("jquery");
-require("jquery-ui");
+define(["require"], function (require) {
+    "use strict";
 
-define(function (require) {
     var fs = require("fs-jetpack");
+    var $ = require("jquery");
 
-    var dispatchManager = requirejs("events/dispatchManager");
+    var requirejs = require("requirejs");
     var ViewEvent = requirejs("events/viewEvent");
+    var dispatchManager = requirejs("events/dispatchManager");
 
 
     function FileManager() {
@@ -35,6 +36,5 @@ define(function (require) {
         });
     }
 
-    var _instance = new FileManager();
-    return _instance;
+    return FileManager;
 });

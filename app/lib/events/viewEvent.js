@@ -1,4 +1,6 @@
-define(function (require) {
+define(function () {
+    "use strict";
+
     var VIEW = "view";
     var FILE = VIEW+".file.request";
 
@@ -10,5 +12,5 @@ define(function (require) {
 
         VIEW_TEMPLATE_REQUEST: FILE+".template",
         VIEW_TEMPLATE_RESPONCE: FILE+".template.sent"
-    };
+    }
 });

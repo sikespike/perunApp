@@ -1,7 +1,8 @@
-var $ = require("jquery");
+define(["require"],function (require) {
+    "use strict";
 
-define(function (require) {
     var _ = require("underscore");
+    var $ = require("jquery");
 
     function DispatchManager() {
         this.initialized = false;
@@ -21,6 +22,5 @@ define(function (require) {
         this.eventCatcher.trigger(event, data);
     };
 
-    var _instance = new DispatchManager();
-    return _instance;
+    return DispatchManager;
 });

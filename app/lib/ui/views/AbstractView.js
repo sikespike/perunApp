@@ -1,18 +1,12 @@
-var $ = require("jquery");
-require("jquery-ui");
+define(["require","requirejs"], function (require, requirejs) {
+    "use strict";
 
-define(function (require) {
-    var _ = require("underscore");
-
-    var dispatchManager = requirejs("events/dispatchMananger");
     var ViewEvent = requirejs("events/viewEvent");
+    var dispatchManager = requirejs("events/dispatchManager");
 
-
-    function AbstractView(params) {
+    function AbstractView() {
         this.viewName = null;
         this.templateName = null;
-
-        this.init(params);
     }
 
     AbstractView.prototype.init = function(params) {

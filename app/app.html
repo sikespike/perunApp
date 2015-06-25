@@ -13,23 +13,47 @@
     <script src="vendor/nw-boilerplate/env_config.js"></script>
     <script>
         (function () {
-            var gui = require('nw.gui');
+            var gui = require("nw.gui");
             var win = gui.Window.get();
 
             // Create default menu items for OSX
-            if (process.platform === 'darwin') {
+            if (process.platform === "darwin") {
                 var mb = new gui.Menu({ type: "menubar" });
                 mb.createMacBuiltin(gui.App.manifest.productName);
                 win.menu = mb;
             }
         }());
     </script>
-    <script src="app.js"></script>
     <script>
-        startApp();
+        var $ = require("jquery");
+        $(document).ready(function(){
+            var requirejs = require("requirejs");
+            var viewName = $("#main-container").data("view");
+
+            requirejs.config({
+                baseUrl: "lib/",
+                nodeRequire: require,
+                paths: {
+                    "events": "events",
+                    "api": "api",
+                    "model": "model",
+                    "net": "net",
+                    "vm": "ui/vm",
+                    "views": "ui/views",
+                    "templates": "ui/views/templates"
+                }
+            });
+
+            requirejs(["require","views/"+viewName,"events/viewEvent","events/dispatchManager","api/fileManager","app"], function(require,
+                                                                       viewEvent,dispatchManager,fileManager,view, app){
+                view.prototype.init({
+                    viewName: viewName
+                });
+            });
+        });
     </script>
 </head>
 <body>
-    <div id="main-container" data-view="mainView"></div>
+    <div id="main-container" data-view="MainView"></div>
 </body>
 </html>
