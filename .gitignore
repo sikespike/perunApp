@@ -9,3 +9,7 @@ build
 #project file
 *.iml
 .idea/
+
+node_modules
+
+./app/node_modules
