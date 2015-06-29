@@ -24,33 +24,9 @@
             }
         }());
     </script>
+    <script src="vendor/require.js"></script>
     <script>
-        var $ = require("jquery");
-        $(document).ready(function(){
-            var requirejs = require("requirejs");
-            var viewName = $("#main-container").data("view");
-
-            requirejs.config({
-                baseUrl: "lib/",
-                nodeRequire: require,
-                paths: {
-                    "events": "events",
-                    "api": "api",
-                    "model": "model",
-                    "net": "net",
-                    "vm": "ui/vm",
-                    "views": "ui/views",
-                    "templates": "ui/views/templates"
-                }
-            });
-
-            requirejs(["require","views/"+viewName,"events/viewEvent","events/dispatchManager","api/fileManager","app"], function(require,
-                                                                       viewEvent,dispatchManager,fileManager,view, app){
-                view.prototype.init({
-                    viewName: viewName
-                });
-            });
-        });
+        requirejs(['app'], function (app) {});
     </script>
 </head>
 <body>
