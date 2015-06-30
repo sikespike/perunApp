@@ -1,7 +1,12 @@
+var $ = require("jquery");
+
 import {ViewEvent} from "../event/viewEvent.js";
 import {dispatchManager} from "../managers/dispatchManager.js";
 
-function AbstractView(params) {
+function AbstractView() {
+};
+
+AbstractView.prototype.init = function(params) {
     this.viewName = !!params.viewName ? params.viewName: "AbstractView";
     this.templateName = !!params.templateName ?
         params.templateName : this.viewName+"Template.tpl";
@@ -13,7 +18,7 @@ function AbstractView(params) {
 };
 
 AbstractView.prototype.loadTemplate = function(event, data) {
-
+    $("#main-container").html(data);
 };
 
-export var abstractView = AbstractView;
+export var abstractView = new AbstractView();

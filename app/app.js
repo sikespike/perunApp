@@ -1,10 +1,15 @@
 var $ = require("jquery");
 
 import {abstractView} from "./lib/view/abstractView.js";
+import {dispatchManager} from "./lib/managers/dispatchManager.js";
 import {fileManager} from "./lib/managers/fileManager.js";
 
 function startApp() {
-    $("#main-container").html("hello world");
+    var viewName = $("#main-container").data("view");
+
+    abstractView.init({
+        viewName: viewName
+    });
 }
 
 $(function(){

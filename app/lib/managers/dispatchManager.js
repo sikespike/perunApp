@@ -12,11 +12,16 @@ DispatchManager.prototype.init = function () {
 };
 
 DispatchManager.prototype.addActionListener = function (event, func, scope) {
-    this.eventCatcher.on(event, _.bind(func, scope));
+    this.eventCatcher.on(event, function(e, data){
+        func.call(scope,event,data);
+    });
 };
 
 DispatchManager.prototype.dispatchEvent = function (event, data) {
     this.eventCatcher.trigger(event, data);
 };
 
-export var dispatchManager = DispatchManager;
+var _instance = new DispatchManager();
+_instance.init();
+
+export var dispatchManager = _instance;

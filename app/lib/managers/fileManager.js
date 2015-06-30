@@ -4,23 +4,29 @@ import {dispatchManager} from "./dispatchManager.js";
 
 
 function FileManager() {
-    this.templateFolder = "./lib/ui/views/templates";
+    this.templateFolder = "./lib/view/templates";
 };
 
 FileManager.prototype.init = function () {
+    var self = this;
+    dispatchManager.init();
+
     dispatchManager.addActionListener(ViewEvent.FILE_REQUEST,
         function (event, data) {
             fs.readAsync(data, function (file) {
-                dispatchManager.dispatchEvent(ViewEvent.VIEW_FILE_RESPONCE, file);
+                dispatchManager.dispatchEvent(ViewEvent.FILE_RESPONCE, file);
             });
         }, this);
 
     dispatchManager.addActionListener(ViewEvent.TEMPLATE_REQUEST,
         function (event, data) {
-            fs.readAsync(this.templateFolder + "/" + data, function (file) {
-                dispatchManager.dispatchEvent(ViewEvent.VIEW_TEMPLATE_RESPONCE, file);
+            fs.readAsync(self.templateFolder + "/" + data).then(function (file) {
+                dispatchManager.dispatchEvent(ViewEvent.TEMPLATE_RESPONCE, file);
             });
         }, this);
 };
 
-export var fileManager = FileManager;
+var _instance = new FileManager();
+_instance.init();
+
+export var fileManager = _instance;
