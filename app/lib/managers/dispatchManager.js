@@ -7,18 +7,17 @@ function DispatchManager() {
 DispatchManager.prototype.init = function () {
     if(!this.initialized) {
         this.initialized = true;
-        this.eventCatcher = $("body");
     }
 };
 
 DispatchManager.prototype.addActionListener = function (event, func, scope) {
-    this.eventCatcher.on(event, function(e, data){
+    $(document).on(event, function(e, data){
         func.call(scope,event,data);
     });
 };
 
 DispatchManager.prototype.dispatchEvent = function (event, data) {
-    this.eventCatcher.trigger(event, data);
+    $(document).trigger(event, data);
 };
 
 var _instance = new DispatchManager();
