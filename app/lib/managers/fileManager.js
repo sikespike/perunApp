@@ -1,6 +1,6 @@
 var fs = require("fs-jetpack");
 
-import {ViewEvent} from "../event/viewEvent.js";
+import {Event} from "../event/event.js";
 import {dispatchManager} from "./dispatchManager.js";
 
 function FileManager() {
@@ -14,17 +14,17 @@ FileManager.prototype.init = function () {
     var self = this;
     dispatchManager.init();
 
-    dispatchManager.addActionListener(ViewEvent.FILE_REQUEST,
+    dispatchManager.addActionListener(Event.VIEW.FILE_REQUEST,
         function (request) {
             fs.readAsync(request.fileName, function (file) {
-                dispatchManager.dispatchEvent(ViewEvent.FILE_RESPONCE, file);
+                dispatchManager.dispatchEvent(Event.VIEW.FILE_RESPONSE, file);
             });
         }, this);
 
-    dispatchManager.addActionListener(ViewEvent.TEMPLATE_REQUEST,
+    dispatchManager.addActionListener(Event.VIEW.TEMPLATE_REQUEST,
         function (request) {
             fs.readAsync(self.templateFolder + "/" + request.result.templateName).then(function (file) {
-                dispatchManager.dispatchEvent(ViewEvent.TEMPLATE_RESPONCE, {
+                dispatchManager.dispatchEvent(Event.VIEW.TEMPLATE_RESPONSE, {
                     viewName:request.result.viewName,
                     html: file
                 });

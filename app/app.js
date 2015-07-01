@@ -1,6 +1,6 @@
 var $ = require("jquery");
 
-import {ViewEvent} from "./lib/event/viewEvent.js";
+import {Event} from "./lib/event/event.js";
 import {dispatchManager} from "./lib/managers/dispatchManager.js";
 import {fileManager} from "./lib/managers/fileManager.js";
 import {viewManager} from "./lib/managers/viewManager.js";
@@ -8,7 +8,7 @@ import {viewManager} from "./lib/managers/viewManager.js";
 function startApp() {
     var viewName = $("#main-container").data("view");
 
-    dispatchManager.dispatchEvent(ViewEvent.VIEW_CHANGE,{
+    dispatchManager.dispatchEvent(Event.VIEW.VIEW_CHANGE,{
         viewName: viewName
     });
 }

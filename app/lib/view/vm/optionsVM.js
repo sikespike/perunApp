@@ -1,8 +1,9 @@
 var $ = require("jquery");
 var _ = require("underscore");
 
-import {ViewEvent} from "../../event/viewEvent.js";
+import {Event} from "../../event/event.js";
 import {dispatchManager} from "../../managers/dispatchManager.js";
+import {netUtil} from "../../util/netUtil.js";
 
 function OptionsViewModel(container) {
     this.container = container;
@@ -12,6 +13,7 @@ function OptionsViewModel(container) {
 OptionsViewModel.prototype.init = function() {
     initComponents.call(this);
     initEvents.call(this);
+    initFields.call(this);
 };
 
 function initComponents() {
@@ -32,6 +34,11 @@ function locateTarget() {
 
 function connectToTarget() {
 
+}
+
+function initFields() {
+    var addresses = netUtil.getAddresses();
+    console.log(addresses);
 }
 
 export var OptionsVM = OptionsViewModel;

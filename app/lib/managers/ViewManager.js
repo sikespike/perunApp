@@ -1,7 +1,7 @@
 var $ = require("jquery");
 var _ = require("underscore");
 
-import {ViewEvent} from "../event/viewEvent.js";
+import {Event} from "../event/event.js";
 import {dispatchManager} from "./dispatchManager.js";
 import {OptionsVM} from "../view/vm/optionsVM.js";
 
@@ -15,16 +15,16 @@ function ViewManager() {
 ViewManager.prototype.init = function(params) {
     this.mainContainer = $("#main-container");
 
-    dispatchManager.addActionListener(ViewEvent.VIEW_CHANGE,
+    dispatchManager.addActionListener(Event.VIEW.VIEW_CHANGE,
         changeView, this);
-    dispatchManager.addActionListener(ViewEvent.TEMPLATE_RESPONCE,
+    dispatchManager.addActionListener(Event.VIEW.TEMPLATE_RESPONSE,
         loadTemplate, this);
 };
 
 function changeView(data) {
     var templateName = data.result.viewName+"Template.tpl";
 
-    dispatchManager.dispatchEvent(ViewEvent.TEMPLATE_REQUEST, {
+    dispatchManager.dispatchEvent(Event.VIEW.TEMPLATE_REQUEST, {
         viewName: data.result.viewName,
         templateName: templateName
     });
