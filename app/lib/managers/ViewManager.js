@@ -26,7 +26,7 @@ function changeView(data) {
     var templateName = data.result.viewName+"Template.tpl";
 
     dispatchManager.dispatchEvent(ViewEvent.TEMPLATE_REQUEST, {
-        viewName: data.viewName,
+        viewName: data.result.viewName,
         templateName: templateName
     });
 };

@@ -15,10 +15,10 @@ OptionsViewModel.prototype.init = function() {
 };
 
 function initComponents() {
-    this.currentAddress = this.container.find("my-ip-input");
-    this.targetAddress = this.container.find("target-ip-input");
-    this.locateButton = this.container.find("locate-target-button");
-    this.connectButton = this.container.find("connect-button");
+    this.currentAddress = this.container.find(".my-ip-input");
+    this.targetAddress = this.container.find(".target-ip-input");
+    this.locateButton = this.container.find(".locate-target-button");
+    this.connectButton = this.container.find(".connect-button");
 }
 
 function initEvents() {
@@ -27,6 +27,7 @@ function initEvents() {
 }
 
 function locateTarget() {
+
 }
 
 function connectToTarget() {
