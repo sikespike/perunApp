@@ -5,15 +5,14 @@ import {ViewEvent} from "../event/viewEvent.js";
 import {dispatchManager} from "./dispatchManager.js";
 import {OptionsVM} from "../view/vm/optionsVM.js";
 
-function ViewActionManager() {
+function ViewManager() {
     if(_instance == null) {
         this.mainContainer = null;
-
         this.init();
     }
 };
 
-ViewActionManager.prototype.init = function(params) {
+ViewManager.prototype.init = function(params) {
     this.mainContainer = $("#main-container");
 
     dispatchManager.addActionListener(ViewEvent.VIEW_CHANGE,
@@ -46,6 +45,6 @@ function loadViewModel(viewName) {
     }
 }
 
-var _instance = new ViewActionManager();
+var _instance = new ViewManager();
 
-export var ViewManager = _instance;
+export var viewManager = _instance;
