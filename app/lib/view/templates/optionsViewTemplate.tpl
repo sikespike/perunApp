@@ -11,18 +11,23 @@
                 <input class="my-ip-input" type="text"></input>
             </li>
             <li>
-                <span class="option-label">Port(s):</span>
+                <span class="option-label">Broadcast IP:</span>
+                <input class="broadcast-ip-input" type="text"></input>
+            </li>
+            <li>
+                <span class="option-label">Port:</span>
                 <input class="my-ports-input" type="text"></input>
             </li>
             <li>
-                <button class="test-ports-button">Test Port(s)</button>
+                <button class="random-port-button">Random Port</button>
+                <button class="test-port-button">Test Port(s)</button>
             </li>
             <li>
                 <span class="option-label">Target IP:</span>
                 <input class="target-ip-input" type="text"></input>
             </li>
             <li>
-                <span class="option-label">Target Ports:</span>
+                <span class="option-label">Target Port(s):</span>
                 <input class="target-ports-input" type="text"></input>
             </li>
             <li>

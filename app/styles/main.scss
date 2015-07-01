@@ -76,6 +76,10 @@ h2 {
                 span {
                     width: 100px;
                 }
+
+                input {
+                    width: calc(100% - 111px);
+                }
             }
         }
     }
