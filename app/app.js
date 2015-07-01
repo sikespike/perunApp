@@ -1,13 +1,14 @@
 var $ = require("jquery");
 
-import {abstractView} from "./lib/view/abstractView.js";
+import {ViewEvent} from "./lib/event/viewEvent.js";
 import {dispatchManager} from "./lib/managers/dispatchManager.js";
 import {fileManager} from "./lib/managers/fileManager.js";
+import {ViewManager} from "./lib/managers/ViewManager.js";
 
 function startApp() {
     var viewName = $("#main-container").data("view");
 
-    abstractView.init({
+    dispatchManager.dispatchEvent(ViewEvent.VIEW_CHANGE,{
         viewName: viewName
     });
 }

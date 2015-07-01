@@ -5,14 +5,17 @@ function DispatchManager() {
 }
 
 DispatchManager.prototype.init = function () {
-    if(!this.initialized) {
+    if (!this.initialized) {
         this.initialized = true;
     }
 };
 
 DispatchManager.prototype.addActionListener = function (event, func, scope) {
-    $(document).on(event, function(e, data){
-        func.call(scope,event,data);
+    $(document).on(event, function (e, data) {
+        func.call(scope, {
+            event:  event,
+            result: data
+        });
     });
 };
 
