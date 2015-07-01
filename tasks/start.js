@@ -48,7 +48,7 @@ var runGulpWatch = function () {
 };
 
 var runApp = function () {
-    var app = childProcess.spawn(nw.findpath(), ['./build',"--remote-debugging-port=9222"]);
+    var app = childProcess.spawn(nw.findpath(), ['./build']);
 
     app.stdout.pipe(process.stdout);
     app.stderr.pipe(process.stderr);

@@ -1,16 +1,17 @@
 "use strict";
 
-var gulp = require("gulp");
-var compass = require("gulp-compass");
+var gulp      = require("gulp");
+var compass   = require("gulp-compass");
+var uglify    = require("gulp-uglify");
 var esperanto = require("esperanto");
-var map = require("vinyl-map");
-var jetpack = require("fs-jetpack");
+var map       = require("vinyl-map");
+var jetpack   = require("fs-jetpack");
 
 var utils = require("./utils");
 
 var projectDir = jetpack;
-var srcDir = projectDir.cwd("./app");
-var destDir = projectDir.cwd("./build");
+var srcDir     = projectDir.cwd("./app");
+var destDir    = projectDir.cwd("./build");
 
 var paths = {
     jsCodeToTranspile: [
@@ -19,7 +20,7 @@ var paths = {
         "!app/bower_components/**",
         "!app/vendor/**"
     ],
-    toCopy: [
+    toCopy:            [
         "app/node_modules/**",
         "app/bower_components/**",
         "app/vendor/**",
@@ -32,51 +33,61 @@ var paths = {
 // Tasks
 // -------------------------------------
 
-gulp.task("clean", function(callback) {
-    return destDir.dirAsync(".", { empty: true });
+gulp.task("clean", function (callback) {
+    return destDir.dirAsync(".", {empty: true});
 });
 
-
 var copyTask = function () {
-    projectDir.copy("resources/images/icon.png", destDir.path("icon.png"), { overwrite: true });
+    projectDir.copy("resources/images/icon.png", destDir.path("icon.png"), {overwrite: true});
 
     return projectDir.copyAsync("app", destDir.path(), {
         overwrite: true,
-        matching: paths.toCopy
+        matching:  paths.toCopy
     });
 };
 gulp.task("copy", ["clean"], copyTask);
 gulp.task("copy-watch", copyTask);
 
-
 var transpileTask = function () {
-    return gulp.src(paths.jsCodeToTranspile)
-    .pipe(map(function(code, filename) {
-        try {
-            var transpiled = esperanto.toAmd(code.toString(), { strict: true });
-        } catch (err) {
-            throw new Error(err.message + " " + filename);
-        }
-        return transpiled.code;
-    }))
-    .pipe(gulp.dest(destDir.path()));
+    if (utils.getEnvName() == "production") {
+        return gulp.src(paths.jsCodeToTranspile)
+            .pipe(map(function (code, filename) {
+                try {
+                    var transpiled = esperanto.toAmd(code.toString(), {strict: true});
+                } catch (err) {
+                    throw new Error(err.message + " " + filename);
+                }
+                return transpiled.code;
+            }))
+            .pipe(uglify())
+            .pipe(gulp.dest(destDir.path()));
+    } else {
+        return gulp.src(paths.jsCodeToTranspile)
+            .pipe(map(function (code, filename) {
+                try {
+                    var transpiled = esperanto.toAmd(code.toString(), {strict: true});
+                } catch (err) {
+                    throw new Error(err.message + " " + filename);
+                }
+                return transpiled.code;
+            }))
+            .pipe(gulp.dest(destDir.path()));
+    }
 };
 gulp.task("transpile", ["clean"], transpileTask);
 gulp.task("transpile-watch", transpileTask);
 
-
-var compassTask =function() {
+var compassTask = function () {
     return gulp.src("./app/styles/*.scss")
         .pipe(compass({
             config_file: "./compass-config.rb",
-            css: "./build/styles",
-            sass: "./app/styles"
+            css:         "./build/styles",
+            sass:        "./app/styles"
         })).pipe(gulp.dest(destDir.path("styles")));
 };
 
 gulp.task("compass", ["clean"], compassTask);
 gulp.task("compass-watch", compassTask);
-
 
 // Add and customize OS-specyfic and target-specyfic stuff.
 gulp.task("finalize", ["clean"], function () {
@@ -105,12 +116,10 @@ gulp.task("finalize", ["clean"], function () {
     destDir.copy(configFilePath, "env_config.json");
 });
 
-
 gulp.task("watch", function () {
     gulp.watch(paths.jsCodeToTranspile, ["transpile-watch"]);
     gulp.watch(paths.toCopy, ["copy-watch"]);
     gulp.watch("app/**/*.scss", ["compass-watch"]);
 });
-
 
 gulp.task("build", ["transpile", "compass", "copy", "finalize"]);
