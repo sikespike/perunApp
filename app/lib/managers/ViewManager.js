@@ -15,16 +15,16 @@ function ViewManager() {
 ViewManager.prototype.init = function(params) {
     this.mainContainer = $("#main-container");
 
-    dispatchManager.addActionListener(Event.VIEW.VIEW_CHANGE,
+    dispatchManager.addActionListener(Event.createEvent(Event.VIEW.VIEW_CHANGE),
         changeView, this);
-    dispatchManager.addActionListener(Event.VIEW.TEMPLATE_RESPONSE,
+    dispatchManager.addActionListener(Event.createEvent(Event.VIEW.TEMPLATE_RESPONSE),
         loadTemplate, this);
 };
 
 function changeView(data) {
     var templateName = data.result.viewName+"Template.tpl";
 
-    dispatchManager.dispatchEvent(Event.VIEW.TEMPLATE_REQUEST, {
+    dispatchManager.dispatchEvent(Event.createEvent(Event.VIEW.TEMPLATE_REQUEST), {
         viewName: data.result.viewName,
         templateName: templateName
     });

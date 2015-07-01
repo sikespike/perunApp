@@ -11,7 +11,7 @@ DispatchManager.prototype.init = function () {
 };
 
 DispatchManager.prototype.addActionListener = function (event, func, scope) {
-    $(document).on(event, function (e, data) {
+    $(event.target).on(event.event, function (e, data) {
         func.call(scope, {
             event:  event,
             result: data
@@ -20,7 +20,7 @@ DispatchManager.prototype.addActionListener = function (event, func, scope) {
 };
 
 DispatchManager.prototype.dispatchEvent = function (event, data) {
-    $(document).trigger(event, data);
+    $(event.target).trigger(event.event, data);
 };
 
 var _instance = new DispatchManager();

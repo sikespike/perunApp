@@ -8,7 +8,7 @@ import {viewManager} from "./lib/managers/viewManager.js";
 function startApp() {
     var viewName = $("#main-container").data("view");
 
-    dispatchManager.dispatchEvent(Event.VIEW.VIEW_CHANGE,{
+    dispatchManager.dispatchEvent(Event.createEvent(Event.VIEW.VIEW_CHANGE),{
         viewName: viewName
     });
 }

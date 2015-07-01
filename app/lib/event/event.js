@@ -1,3 +1,5 @@
+var $ = require("jquery");
+
 function Events() {
     return {
         VIEW: {
@@ -11,6 +13,12 @@ function Events() {
         NET: {
             CLIENT_BROADCAST: "net.msg.broadcast",
             CLIENT_BROADCAST_RESPONSE: "net.msg.broadcast.response"
+        },
+        createEvent: function(event, target) {
+            return {
+                event: event,
+                target: target ? target : $(document)
+            }
         }
     }
 }

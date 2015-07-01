@@ -14,17 +14,17 @@ FileManager.prototype.init = function () {
     var self = this;
     dispatchManager.init();
 
-    dispatchManager.addActionListener(Event.VIEW.FILE_REQUEST,
+    dispatchManager.addActionListener(Event.createEvent(Event.VIEW.FILE_REQUEST),
         function (request) {
             fs.readAsync(request.fileName, function (file) {
-                dispatchManager.dispatchEvent(Event.VIEW.FILE_RESPONSE, file);
+                dispatchManager.dispatchEvent(Event.createEvent(Event.VIEW.FILE_RESPONSE), file);
             });
         }, this);
 
-    dispatchManager.addActionListener(Event.VIEW.TEMPLATE_REQUEST,
+    dispatchManager.addActionListener(Event.createEvent(Event.VIEW.TEMPLATE_REQUEST),
         function (request) {
             fs.readAsync(self.templateFolder + "/" + request.result.templateName).then(function (file) {
-                dispatchManager.dispatchEvent(Event.VIEW.TEMPLATE_RESPONSE, {
+                dispatchManager.dispatchEvent(Event.createEvent(Event.VIEW.TEMPLATE_RESPONSE), {
                     viewName:request.result.viewName,
                     html: file
                 });
