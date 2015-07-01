@@ -5,7 +5,8 @@ function Events() {
             FILE_RESPONSE:     "view.file.sent",
             TEMPLATE_REQUEST:  "view.template.request",
             TEMPLATE_RESPONSE: "view.template.sent",
-            VIEW_CHANGE:        "view.change"
+            VIEW_CHANGE:        "view.change",
+            OPTIONS_LOCATE_MESSAGE: "view.options.locate.msg"
         },
         NET: {
             CLIENT_BROADCAST: "net.msg.broadcast",

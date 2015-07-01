@@ -38,7 +38,6 @@ function connectToTarget() {
 
 function initFields() {
     var addresses = netUtil.getAddresses();
-    console.log(addresses);
 }
 
 export var OptionsVM = OptionsViewModel;

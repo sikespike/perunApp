@@ -1,7 +1,7 @@
 "use strict";
 
 var gulp = require("gulp");
-var compass = require("gulp-sass");
+var compass = require("gulp-compass");
 var esperanto = require("esperanto");
 var map = require("vinyl-map");
 var jetpack = require("fs-jetpack");
@@ -65,7 +65,7 @@ gulp.task("transpile", ["clean"], transpileTask);
 gulp.task("transpile-watch", transpileTask);
 
 
-var sassTask =function() {
+var compassTask =function() {
     return gulp.src("./app/styles/*.scss")
         .pipe(compass({
             config_file: "./compass-config.rb",
@@ -74,8 +74,8 @@ var sassTask =function() {
         })).pipe(gulp.dest(destDir.path("styles")));
 };
 
-gulp.task("compass", ["clean"], sassTask);
-gulp.task("compass-watch", sassTask);
+gulp.task("compass", ["clean"], compassTask);
+gulp.task("compass-watch", compassTask);
 
 
 // Add and customize OS-specyfic and target-specyfic stuff.

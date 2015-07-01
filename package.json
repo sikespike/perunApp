@@ -3,7 +3,7 @@
         "esperanto": "^0.7.2",
         "fs-jetpack": "^0.6.4",
         "gulp": "^3.8.8",
-        "gulp-sass": "^2.0.1",
+        "gulp-compass": "^2.1.0",
         "gulp-util": "^3.0.1",
         "nw": "^0.12.2",
         "q": "^1.0.1",
