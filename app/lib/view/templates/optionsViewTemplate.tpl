@@ -20,7 +20,7 @@
             </li>
             <li>
                 <button class="random-port-button">Random Port</button>
-                <button class="test-port-button">Test Port(s)</button>
+                <button class="test-port-button">Test Port</button>
             </li>
             <li>
                 <span class="option-label">Target IP:</span>
