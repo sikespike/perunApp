@@ -24,7 +24,6 @@ var paths = {
     ],
     toCopy:            [
         "app/node_modules/**",
-        "app/bower_components/**",
         "app/vendor/**",
         "app/**/*.html",
         "app/**/*.tpl"
