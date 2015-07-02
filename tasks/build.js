@@ -3,6 +3,7 @@
 var gulp        = require("gulp");
 var compass     = require("gulp-compass");
 var uglify      = require("gulp-uglify");
+var minifyCss = require('gulp-minify-css');
 var source      = require('vinyl-source-stream');
 var vinylBuffer = require('vinyl-buffer');
 var esperanto   = require("esperanto");
@@ -85,12 +86,24 @@ gulp.task("transpile", ["clean"], transpileTask);
 gulp.task("transpile-watch", transpileTask);
 
 var compassTask = function () {
-    return gulp.src("./app/styles/*.scss")
-        .pipe(compass({
-            config_file: "./compass-config.rb",
-            css:         "./build/styles",
-            sass:        "./app/styles"
-        })).pipe(gulp.dest(destDir.path("styles")));
+    if (utils.getEnvName() == "production") {
+        return gulp.src("./app/styles/*.scss")
+            .pipe(compass({
+                config_file: "./compass-config.rb",
+                css:         "./build/styles",
+                sass:        "./app/styles"
+            }))
+            .pipe(minifyCss())
+            .pipe(gulp.dest(destDir.path("styles")));
+    } else {
+        return gulp.src("./app/styles/*.scss")
+            .pipe(compass({
+                config_file: "./compass-config.rb",
+                css:         "./build/styles",
+                sass:        "./app/styles"
+            }))
+            .pipe(gulp.dest(destDir.path("styles")));
+    }
 };
 
 gulp.task("compass", ["clean"], compassTask);
