@@ -16,11 +16,11 @@ function OptionsViewModel() {
 
     var self = this;
 
-    this.randomizePort = function(e, data) {
+    this.randomizePort = function(e) {
         randomizePortHandler.call(self)
     };
-    this.locateTarget = function(){};
-    this.connectToTarget = function(){};
+    this.locateTarget = function(e){};
+    this.connectToTarget = function(e){};
 }
 
 OptionsViewModel.prototype.init = function(view) {

@@ -19,7 +19,7 @@
                 <input class="my-ports-input" type="text" value="{{<~>hostInfo.serverPort}}"></input>
             </li>
             <li>
-                <button class="random-port-button" onClick="{{randomizePort()}}">Random Port</button>
+                <button class="random-port-button" onClick="{{randomizePort(event)}}">Random Port</button>
                 <button class="test-port-button">Test Port</button>
             </li>
             <li>
@@ -31,10 +31,10 @@
                 <input class="target-ports-input" type="text" value="{{<~>hostInfo.targetPorts}}"></input>
             </li>
             <li>
-                <button class="locate-target-button" onClick="{{locateTarget()}}">Locate Target</button>
+                <button class="locate-target-button" onClick="{{locateTarget(event)}}">Locate Target</button>
             </li>
             <li>
-                <button class="connect-button" onClick="{{connectToTarget()}}">Connect</button>
+                <button class="connect-button" onClick="{{connectToTarget(event)}}">Connect</button>
             </li>
         </ul>
     </div>
