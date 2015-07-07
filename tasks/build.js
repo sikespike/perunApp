@@ -13,6 +13,7 @@ var jetpack     = require("fs-jetpack");
 var utils = require("./utils");
 
 var projectDir = jetpack;
+var appFile = projectDir.cwd("./app/app.js")
 var srcDir     = projectDir.cwd("./app");
 var destDir    = projectDir.cwd("./build");
 

@@ -5,6 +5,7 @@ import {Event} from "../event/event.js";
 import {dispatchManager} from "./dispatchManager.js";
 import {OptionsVM} from "../view/vm/optionsVM.js";
 
+
 function ViewManager() {
     if(_instance == null) {
         this.mainContainer = null;
@@ -31,18 +32,25 @@ function changeView(data) {
 };
 
 function loadTemplate(data) {
-    this.mainContainer.html(data.result.html);
-    loadViewModel.call(this, data.result.viewName);
+    loadViewModel.call(this, data.result);
 }
 
-function loadViewModel(viewName) {
-    var $page = this.mainContainer.children().first();
+function loadViewModel(viewData) {
+    var viewModel = null;
 
-    switch(viewName) {
+    switch(viewData.viewName) {
         case "optionsView":
-            this.currentView = new OptionsVM($page);
+            viewModel = new OptionsVM();
             break;
     }
+
+    var template = paperclip.template(viewData.html);
+    var view = template.view(viewModel);
+
+    var renderedView = view.render();
+    this.mainContainer[0].appendChild(renderedView);
+
+    viewModel.init(view);
 }
 
 var _instance = new ViewManager();

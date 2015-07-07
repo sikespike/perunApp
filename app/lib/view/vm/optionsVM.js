@@ -5,60 +5,51 @@ import {Event} from "../../event/event.js";
 import {dispatchManager} from "../../managers/dispatchManager.js";
 import {netUtil} from "../../util/netUtil.js";
 
-function OptionsViewModel(container) {
-    this.container = container;
-    this.hostInfo = null;
-    this.init();
+function OptionsViewModel() {
+    this.hostInfo = {
+        address:null,
+        broadcast:null,
+        serverPort:null,
+        targetAddress:null,
+        targetPorts:null
+    };
+
+    var self = this;
+
+    this.randomizePort = function(e, data) {
+        randomizePortHandler.call(self)
+    };
+    this.locateTarget = function(){};
+    this.connectToTarget = function(){};
 }
 
-OptionsViewModel.prototype.init = function() {
-    initComponents.call(this);
-    initEvents.call(this);
+OptionsViewModel.prototype.init = function(view) {
+    this.view = view;
     initFields.call(this);
 };
 
-function initComponents() {
-    this.currentAddress = this.container.find(".my-ip-input");
-    this.broadcastAddress = this.container.find(".broadcast-ip-input");
-    this.currentPorts = this.container.find(".my-ports-input");
-
-    this.randomPortButton = this.container.find(".random-port-button");
-    this.testPortsButton = this.container.find(".test-port-button");
-
-    this.targetAddress = this.container.find(".target-ip-input");
-    this.targetPorts = this.container.find(".target-ports-input");
-
-    this.locateButton = this.container.find(".locate-target-button");
-    this.connectButton = this.container.find(".connect-button");
-}
-
-function initEvents() {
-    this.randomPortButton.on("click", _.bind(generateRandomPort, this));
-    this.testPortsButton.on("click", _.bind(testCurrentPorts, this));
-    this.locateButton.on("click", _.bind(locateTarget, this));
-    this.connectButton.on("click", _.bind(connectToTarget, this));
-}
-
-function generateRandomPort() {
+function randomizePortHandler(e, data) {
     var randomPort = Math.floor(Math.random() * (65536 - 49152)) + 49152;
 
-    this.currentPorts.val(randomPort);
+    this.hostInfo.serverPort = randomPort;
+
+    this.view.set("hostInfo", this.hostInfo);
 }
 
 function testCurrentPorts() {
-    var portString = this.currentPorts.val();
+    /*var portString = this.currentPorts.val();
 
     if(portString.trim() !== "") {
         if(portString.split(",").length == 1 && portString.split(" ").length == 1) {
             var portNumber = parseInt(portString.trim());
 
             if(portNumber >= 49152 && portNumber <= 65535) {
-                this.hostInfo.serverPort = portNumber;
+     //           this.hostInfo.serverPort = portNumber;
             }
         } else {
 
         }
-    }
+    }*/
 }
 
 function locateTarget() {
@@ -73,10 +64,12 @@ function initFields() {
     var addresses = netUtil.getAddresses();
 
     if(addresses.length == 1) {
-        this.hostInfo = addresses[0];
+        this.hostInfo = _.extend(this.hostInfo, addresses[0]);
 
-        this.currentAddress.val(this.hostInfo.address);
-        this.broadcastAddress.val(this.hostInfo.broadcast);
+
+        this.view.set("hostInfo", this.hostInfo);
+        //this.currentAddress.val(this.hostInfo.address);
+        //this.broadcastAddress.val(this.hostInfo.broadcast);
     } else {
 
     }
