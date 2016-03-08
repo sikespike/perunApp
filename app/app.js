@@ -2,6 +2,7 @@ var $ = require("jquery");
 
 import {Event} from "./lib/event/event.js";
 import {dispatchManager} from "./lib/managers/dispatchManager.js";
+import {actionsManager} from "./lib/managers/actionsManager.js";
 import {fileManager} from "./lib/managers/fileManager.js";
 import {viewManager} from "./lib/managers/viewManager.js";
 

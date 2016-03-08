@@ -16,13 +16,13 @@
                 <button class="target-button" data-action="view.action.image.load" data-end="view.action.image.loaded">Load Image</button>
             </li>
             <li>
-                <button class="target-button" data-action="view.action.image.load" data-end="view.action.image.loaded">Import Sprite</button>
+                <button class="target-button" data-action="view.action.sprite.import" data-end="view.action.sprite.imported">Import Sprite</button>
             </li>
             <li>
-                <button class="target-button" data-action="view.action.image.load" data-end="view.action.image.loaded">Export Sprite</button>
+                <button class="target-button" data-action="view.action.sprite.export" data-end="view.action.sprite.exported">Export Sprite</button>
             </li>
             <li>
-                <button class="target-button" data-action="view.action.image.load" data-end="view.action.image.loaded">Save to Project</button>
+                <button class="target-button" data-action="view.action.sprite.add" data-end="view.action.sprite.added">Save to Project</button>
             </li>
         </ul>
     </div>
