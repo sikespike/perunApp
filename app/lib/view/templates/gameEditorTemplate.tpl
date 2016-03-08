@@ -1,1 +1,1 @@
-<div id="gameEditor">game</div>
+<div id="gameEditor" class="editor-view">game</div>

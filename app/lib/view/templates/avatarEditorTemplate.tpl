@@ -1,38 +1,29 @@
-<div id="avatarEditor">avatar
-    <!--<div class="options-panel-container">
-        <h2>Options</h2>
-        <ul class="options-panel-list">
+<div id="avatarEditor" class="editor-view">
+    <div class="panel-container avatar-view-wrapper">
+        <div class="inline-panel avatar-view-container">
+            <h2>Avatar View</h2>
+            <div class="avatar-view"></div>
+        </div>
+        <div class="inline-panel avatar-frames-container">
+            <h2>Frame Editor</h2>
+            <div class="frames-view"></div>
+        </div>
+    </div>
+    <div class="panel-container actions-wrapper">
+        <h2>Actions</h2>
+        <ul class="inline-panel panel-list">
             <li>
-                <span class="option-label">IP:</span>
-                <input class="my-ip-input" type="text" value="{{ <~>hostInfo.address }}"></input>
+                <button class="target-button" data-action="view.action.image.load" data-end="view.action.image.loaded">Load Image</button>
             </li>
             <li>
-                <span class="option-label">Broadcast IP:</span>
-                <input class="broadcast-ip-input" type="text" value="{{ <~>hostInfo.broadcast}}"></input>
+                <button class="target-button" data-action="view.action.image.load" data-end="view.action.image.loaded">Import Sprite</button>
             </li>
             <li>
-                <span class="option-label">Port:</span>
-                <input class="my-ports-input" type="text" value="{{<~>hostInfo.serverPort}}"></input>
+                <button class="target-button" data-action="view.action.image.load" data-end="view.action.image.loaded">Export Sprite</button>
             </li>
             <li>
-                <button class="random-port-button" onClick="{{randomizePort(event)}}">Random Port</button>
-                <button class="test-port-button">Test Port</button>
-            </li>
-            <li>
-                <span class="option-label">Target IP:</span>
-                <input class="target-ip-input" type="text" value="{{<~>hostInfo.targetAddress}}"></input>
-            </li>
-            <li>
-                <span class="option-label">Target Port(s):</span>
-                <input class="target-ports-input" type="text" value="{{<~>hostInfo.targetPorts}}"></input>
-            </li>
-            <li>
-                <button class="locate-target-button" onClick="{{locateTarget(event)}}">Locate Target</button>
-            </li>
-            <li>
-                <button class="connect-button" onClick="{{connectToTarget(event)}}">Connect</button>
+                <button class="target-button" data-action="view.action.image.load" data-end="view.action.image.loaded">Save to Project</button>
             </li>
         </ul>
-    </div>-->
-
+    </div>
 </div>

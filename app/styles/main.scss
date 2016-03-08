@@ -27,42 +27,77 @@ h2 {
     margin:0 0 15px 0;
 }
 
+button {
+    border-radius: 0;
+    background: rgba(gray,0.7);
+    border: 1px solid rgba(gray,0.9);
+    color: white;
+    margin: 0 5px 0 0;
+}
+
+.view-page {
+    height: calc(100% - 18px);
+}
+
 .page-container {
-    .options-page {
-        .options-log-container, .options-panel-container {
-            position:absolute;
-            height:calc(100% - 40px);
-            padding:20px;
+    width: 100%;
+    height: 100%;
+    position: relative;
 
-            ul, li {
-                float:left;
-            }
-        }
+    .editor-view {
+        width: 100%;
+        height: 100%;
+        position: relative;
 
-        .options-log-container {
-            background: #dedede;
-            width:calc(70% - 40px);
-            left:0;
-
-
-            .options-log-list {
-                background: #efefef;
-                display:block;
-                position: relative;
-                width:100%;
-                height:calc(100% - 31px);
-                max-height:calc(100% - 31px);
-                overflow-y:auto;
-            }
-        }
-
-        .options-panel-container {
+        .panel-container {
+            height: 100%;
+            width: 100%;;
             background:#c0c0c0;
-            width:calc(30% - 40px);
-            right:0;
+            display: inline-block;
+            vertical-align: top;
+            position: relative;
 
-            .options-panel-list {
-                height:calc(100% - 71px);
+            .inline-panel {
+                @include box-sizing(border-box);
+                display: inline-block;
+                width: 100%;
+            }
+
+            &.avatar-view-wrapper {
+                width: calc(100% - 30%);
+
+                .avatar-view-container {
+                    height: 70%;
+                    padding: 10px;
+                    
+                    .avatar-view {
+                        background: white;
+                        height: calc(100% - 16px);
+                        width: 100%;
+                    }
+                }
+                
+                .avatar-frames-container {
+                    height: 30%;
+                    padding: 10px;
+
+                    .frames-view {
+                        background: white;
+                        width: 100%;
+                        height: calc(100% - 26px);
+                    }
+                }
+            }
+
+            &.actions-wrapper {
+                width: 30%;
+                @include box-sizing(border-box);
+                padding: 10px;
+            }
+            
+            .panel-list {
+                height:calc(100% - 26px);
+                background: white;
             }
 
             li {

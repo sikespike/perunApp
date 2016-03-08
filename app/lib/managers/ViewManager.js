@@ -20,6 +20,18 @@ function ViewManager() {
 ViewManager.prototype.init = function(params) {
     this.mainContainer = $("#main-container");
 
+    this.mainContainer.on("click","button.action-button",_.bind(function(e){
+        var $target = $(e.currentTarget);
+
+        var action = $target.data("action");
+        var endAction = $target.data("end");
+
+        dispatchManager.dispatchEvent(Event.createEvent(action), {
+            event: action,
+            onEnd: endAction
+        });
+    },this));
+
     dispatchManager.addActionListener(Event.createEvent(Event.VIEW.VIEW_CHANGE),
         changeView, this);
     dispatchManager.addActionListener(Event.createEvent(Event.VIEW.TEMPLATE_RESPONSE),
@@ -44,7 +56,7 @@ function changeView(data) {
 function showLoadedView(viewName, target) {
     var $target = this.mainContainer.find("#"+target);
 
-    $target.find("div:not(#"+viewName+")").hide();
+    $target.find("div.editor-view:not(#"+viewName+")").hide();
     $target.find("#"+viewName).show();
 }
 
@@ -84,7 +96,7 @@ function loadViewModel(viewData) {
         var $target = this.mainContainer.find("#"+viewData.target);
         $target[0].appendChild(renderedView);
 
-        $target.find("div:not(#"+viewData.viewName+")").hide();
+        $target.find("div.editor-view:not(#"+viewData.viewName+")").hide();
     }
 }
 

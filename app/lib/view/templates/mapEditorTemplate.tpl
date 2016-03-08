@@ -1,1 +1,1 @@
-<div id="mapEditor">map</div>
+<div id="mapEditor" class="editor-view">map</div>
