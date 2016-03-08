@@ -4,11 +4,11 @@ var _ = require("underscore");
 import {Event} from "../event/event.js";
 import {dispatchManager} from "./dispatchManager.js";
 
-function ActionsManager() {
+function ActionsApi() {
     this.initialized = false;
 }
 
-ActionsManager.prototype.init = function(params) {
+ActionsApi.prototype.init = function(params) {
     if(!this.initialized) {
         this.initialized = true;
 
@@ -70,7 +70,4 @@ function spriteAddedHandler(data) {
 
 }
 
-var _instance = new ActionsManager();
-_instance.init();
-
-export var actionsManager = _instance;
+export var actionsApi = new ActionsApi();

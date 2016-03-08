@@ -12,7 +12,12 @@ function Events() {
             ACTIONS: {
                 IMAGE_LOAD: "view.action.image.load",
                 IMAGE_LOADED: "view.action.image.loaded",
-                SPIRE_IMPORT: "view.action.sprite.import"
+                SPIRE_IMPORT: "view.action.sprite.import",
+                SPIRE_IMPORTED: "view.action.sprite.imported",
+                SPIRE_EXPORT: "view.action.sprite.export",
+                SPIRE_EXPORTED: "view.action.sprite.exported",
+                SPIRE_ADD: "view.action.sprite.add",
+                SPIRE_ADDED: "view.action.sprite.added"
             }
         },
         NET: {
