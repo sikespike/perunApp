@@ -3,39 +3,14 @@ var _ = require("underscore");
 
 import {Event} from "../event/event.js";
 import {dispatchManager} from "./dispatchManager.js";
+import {ActionsApi} from "../api/actionsApi.js";
 
 function ActionsManager() {
-    this.initialized = false;
+    this.api = null;
 }
 
 ActionsManager.prototype.init = function(params) {
-    if(!this.initialized) {
-        this.initialized = true;
-
-        dispatchManager.addActionListener(Event.createEvent(Event.VIEW.ACTIONS.IMAGE_LOAD),
-            imageLoadHandler, this);
-
-        dispatchManager.addActionListener(Event.createEvent(Event.VIEW.ACTIONS.IMAGE_LOADED),
-            imageLoadedHandler, this);
-
-        dispatchManager.addActionListener(Event.createEvent(Event.VIEW.ACTIONS.SPIRE_IMPORT),
-            spriteImportHandler, this);
-
-        dispatchManager.addActionListener(Event.createEvent(Event.VIEW.ACTIONS.SPIRE_IMPORTED),
-            spriteImportedHandler, this);
-
-        dispatchManager.addActionListener(Event.createEvent(Event.VIEW.ACTIONS.SPIRE_EXPORT),
-            spriteExportHandler, this);
-
-        dispatchManager.addActionListener(Event.createEvent(Event.VIEW.ACTIONS.SPIRE_EXPORTED),
-            spriteExportedHandler, this);
-
-        dispatchManager.addActionListener(Event.createEvent(Event.VIEW.ACTIONS.SPIRE_ADD),
-            spriteAddHandler, this);
-
-        dispatchManager.addActionListener(Event.createEvent(Event.VIEW.ACTIONS.SPIRE_ADDED),
-            spriteAddedHandler, this);
-    }
+    this.api = new ActionsApi();
 };
 
 function imageLoadHandler(data) {
