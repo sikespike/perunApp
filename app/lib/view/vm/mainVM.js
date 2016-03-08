@@ -5,74 +5,28 @@ import {Event} from "../../event/event.js";
 import {dispatchManager} from "../../managers/dispatchManager.js";
 import {netUtil} from "../../util/netUtil.js";
 
-function OptionsViewModel() {
-    this.hostInfo = {
-        address:null,
-        broadcast:null,
-        serverPort:null,
-        targetAddress:null,
-        targetPorts:null
-    };
+function MainViewModel() {
+    this.changeView = function(e) {
+        var $button = $(e.target);
 
-    var self = this;
+        var viewName = $button.data("view");
+        var target = $button.data("target");
 
-    this.randomizePort = function(e) {
-        randomizePortHandler.call(self)
+        dispatchManager.dispatchEvent(Event.createEvent(Event.VIEW.VIEW_CHANGE),{
+            viewName: viewName,
+            target: target
+        });
     };
-    this.locateTarget = function(e){};
-    this.connectToTarget = function(e){};
 }
 
-OptionsViewModel.prototype.init = function(view) {
+MainViewModel.prototype.init = function(view) {
     this.view = view;
+
     initFields.call(this);
 };
 
-function randomizePortHandler(e, data) {
-    var randomPort = Math.floor(Math.random() * (65536 - 49152)) + 49152;
-
-    this.hostInfo.serverPort = randomPort;
-
-    this.view.set("hostInfo", this.hostInfo);
-}
-
-function testCurrentPorts() {
-    /*var portString = this.currentPorts.val();
-
-    if(portString.trim() !== "") {
-        if(portString.split(",").length == 1 && portString.split(" ").length == 1) {
-            var portNumber = parseInt(portString.trim());
-
-            if(portNumber >= 49152 && portNumber <= 65535) {
-     //           this.hostInfo.serverPort = portNumber;
-            }
-        } else {
-
-        }
-    }*/
-}
-
-function locateTarget() {
-
-}
-
-function connectToTarget() {
-
-}
-
 function initFields() {
-    var addresses = netUtil.getAddresses();
 
-    if(addresses.length == 1) {
-        this.hostInfo = _.extend(this.hostInfo, addresses[0]);
-
-
-        this.view.set("hostInfo", this.hostInfo);
-        //this.currentAddress.val(this.hostInfo.address);
-        //this.broadcastAddress.val(this.hostInfo.broadcast);
-    } else {
-
-    }
 }
 
-export var OptionsVM = OptionsViewModel;
+export var MainVM = MainViewModel;

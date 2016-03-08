@@ -26,6 +26,7 @@ FileManager.prototype.init = function () {
             fs.readAsync(self.templateFolder + "/" + request.result.templateName).then(function (file) {
                 dispatchManager.dispatchEvent(Event.createEvent(Event.VIEW.TEMPLATE_RESPONSE), {
                     viewName:request.result.viewName,
+                    target: request.result.target ? request.result.target : null,
                     html: file
                 });
             });

@@ -3,12 +3,13 @@ var _ = require("underscore");
 
 import {Event} from "../event/event.js";
 import {dispatchManager} from "./dispatchManager.js";
-import {MainVm} from "../view/vm/mainVM.js";
+import {MainVM} from "../view/vm/mainVM.js";
 
 
 function ViewManager() {
     if(_instance == null) {
         this.mainContainer = null;
+        this.viewList = [];
         this.init();
     }
 };
@@ -23,13 +24,25 @@ ViewManager.prototype.init = function(params) {
 };
 
 function changeView(data) {
-    var templateName = data.result.viewName+"Template.tpl";
+    if(!this.viewList[data.result.viewName]) {
+        var templateName = data.result.viewName+"Template.tpl";
 
-    dispatchManager.dispatchEvent(Event.createEvent(Event.VIEW.TEMPLATE_REQUEST), {
-        viewName: data.result.viewName,
-        templateName: templateName
-    });
-};
+        dispatchManager.dispatchEvent(Event.createEvent(Event.VIEW.TEMPLATE_REQUEST), {
+            viewName: data.result.viewName,
+            target: data.result.target ? data.result.target : null,
+            templateName: templateName
+        });
+    } else {
+        var target = data.result.target ? data.result.target : null;
+        showLoadedView.call(this, data.result.viewName, target);
+    }
+}
+
+function showLoadedView(viewName, target) {
+    var $target = this.mainContainer.find("#"+target);
+
+    $target.find("div:not(#"+viewName+")").hide();
+}
 
 function loadTemplate(data) {
     loadViewModel.call(this, data.result);
@@ -39,18 +52,36 @@ function loadViewModel(viewData) {
     var viewModel = null;
 
     switch(viewData.viewName) {
-        case "optionsView":
-            viewModel = new MainVm();
+        case "mainView":
+            viewModel = new MainVM();
+            break;
+        case "avatarEditor":
+            viewModel = new AvatarEditorVM();
+            break;
+        case "mapEditor":
+            viewModel = new MapEditorVM();
+            break;
+        case "gameEditor":
+            viewModel = new GameEditorVM();
             break;
     }
+
+    this.viewList[viewData.viewName] = viewModel;
 
     var template = paperclip.template(viewData.html);
     var view = template.view(viewModel);
 
     var renderedView = view.render();
-    this.mainContainer[0].appendChild(renderedView);
 
-    viewModel.init(view);
+    if(!viewData.target) {
+        this.mainContainer[0].appendChild(renderedView);
+        viewModel.init(view);
+    } else {
+        var $target = this.mainContainer.find("#"+viewData.target);
+        $target[0].appendChild(renderedView);
+
+        $target.find("div:not(#"+viewData.viewName+")").hide();
+    }
 }
 
 var _instance = new ViewManager();
