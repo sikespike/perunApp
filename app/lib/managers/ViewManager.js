@@ -4,6 +4,9 @@ var _ = require("underscore");
 import {Event} from "../event/event.js";
 import {dispatchManager} from "./dispatchManager.js";
 import {MainVM} from "../view/vm/mainVM.js";
+import {AvatarEditorVM} from "../view/vm/avatarEditorVM.js";
+import {MapEditorVM} from "../view/vm/mapEditorVM.js";
+import {GameEditorVM} from "../view/vm/gameEditorVM.js";
 
 
 function ViewManager() {
@@ -42,6 +45,7 @@ function showLoadedView(viewName, target) {
     var $target = this.mainContainer.find("#"+target);
 
     $target.find("div:not(#"+viewName+")").hide();
+    $target.find("#"+viewName).show();
 }
 
 function loadTemplate(data) {
