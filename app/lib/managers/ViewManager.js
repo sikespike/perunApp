@@ -3,7 +3,7 @@ var _ = require("underscore");
 
 import {Event} from "../event/event.js";
 import {dispatchManager} from "./dispatchManager.js";
-import {OptionsVM} from "../view/vm/optionsVM.js";
+import {MainVm} from "../view/vm/mainVM.js";
 
 
 function ViewManager() {
@@ -40,7 +40,7 @@ function loadViewModel(viewData) {
 
     switch(viewData.viewName) {
         case "optionsView":
-            viewModel = new OptionsVM();
+            viewModel = new MainVm();
             break;
     }
 
