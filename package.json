@@ -1,7 +1,7 @@
 {
     "devDependencies": {
         "esperanto": "^0.7.2",
-        "fs-jetpack": "^0.6.4",
+        "fs-jetpack": "0.6.4",
         "gulp": "^3.8.8",
         "gulp-compass": "^2.1.0",
         "gulp-util": "^3.0.1",
@@ -11,8 +11,8 @@
         "q": "^1.0.1",
         "vinyl-map": "^1.0.1",
         "yargs": "^3.13.0",
-        "vinyl-source-stream":"^1.1.0",
-        "vinyl-buffer":"^1.0.0"
+        "vinyl-source-stream": "^1.1.0",
+        "vinyl-buffer": "^1.0.0"
     },
     "optionalDependencies": {
         "appdmg": "^0.3.1"
